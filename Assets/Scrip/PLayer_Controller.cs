@@ -1,3 +1,4 @@
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Animations;
 
@@ -21,10 +22,25 @@ public class PLayer_Controller : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-           anim.SetBool("Caminar", true);
+            anim.SetBool("Caminar", true);
             rb.linearVelocityX = 5;
+             sr.flipX = false;
         }
-        rb.linearVelocityX = 0;
-        anim.SetBool("Caminar",false);
+        if (Input.GetKeyUp(KeyCode.RightArrow)){
+            anim.SetBool("Caminar", false);
+            rb.linearVelocityX = 0;
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            anim.SetBool("Caminar", true);
+            sr.flipX = true;
+            rb.linearVelocityX = -5;
+        }
+         if (Input.GetKeyUp(KeyCode.LeftArrow)){
+            anim.SetBool("Caminar", false);
+            rb.linearVelocityX = 0;
+        }
+
     }
 }
